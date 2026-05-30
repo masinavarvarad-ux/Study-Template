@@ -1,5 +1,4 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
-
   <PropertyGroup>
     <TargetFramework>net10.0</TargetFramework>
     <Nullable>enable</Nullable>
@@ -7,13 +6,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="10.0.8" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="10.0.8" />
-    <PackageReference Include="Scalar.AspNetCore" Version="2.14.14" />
+    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="10.0.5" />
+    <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUi" Version="10.0.0-*" />
   </ItemGroup>
 
+  <!-- ДОБАВЬТЕ ЭТОТ БЛОК, ЕСЛИ ЕГО НЕТ -->
   <ItemGroup>
-    <ProjectReference Include="..\Study.LabWork3.Logic\Study.LabWork3.Logic.csproj" />
+    <ProjectReference Include="..\Study.LabWork3.Storage\Study.LabWork3.Storage.csproj" />
   </ItemGroup>
-
 </Project>

@@ -1,31 +1,31 @@
-using Scalar.AspNetCore;
-
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-
+// 1. Регистрируем контроллеры в системе
 builder.Services.AddControllers();
-// Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
+
+// 2. Включаем генерацию OpenAPI документа (json) по стандарту .NET 10
 builder.Services.AddOpenApi();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+// Настройка среды разработки
 if (app.Environment.IsDevelopment())
 {
+    // 3. Создаем эндпоинт /openapi/v1.json
     app.MapOpenApi();
-    app.MapScalarApiReference();
+
+    // 4. Подключаем интерфейс Swagger UI поверх сгенерированного json
+    app.UseSwaggerUI(options =>
+    {
+        options.SwaggerEndpoint("/openapi/v1.json", "Библиотека API v1");
+        options.RoutePrefix = string.Empty; // Делает Swagger главной страницей при запуске
+    });
 }
 
 app.UseHttpsRedirection();
-
 app.UseAuthorization();
 
+// 5. Привязываем маршруты контроллеров
 app.MapControllers();
 
 app.Run();
-using (var scope = app.Services.CreateScope())
-{
-    using var db = new Study.LabWork3.Storage.BookDbContext();
-    db.Database.EnsureCreated(); // создает файл базы данных автоматически
-}

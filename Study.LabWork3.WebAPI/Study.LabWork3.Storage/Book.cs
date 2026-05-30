@@ -1,12 +1,14 @@
-namespace Study.LabWork3.Storage;
+using System;
 
-public class Book
+namespace Study.LabWork3.Storage
 {
-    public int Id { get; set; }
-    public string Title { get; set; }
-    public decimal Price { get; set; }
-
-    // внешние ключи для связи с автором
-    public int AuthorId { get; set; }
-    public Author Author { get; set; }
+    // Делаем класс public, чтобы его видел проект с контроллерами
+    public class Book
+    {
+        public int Id { get; set; }
+        public string Title { get; set; } = string.Empty;
+        public string Author { get; set; } = string.Empty;
+        public int Year { get; set; }
+        public string Isbn { get; set; } = string.Empty;
+    }
 }
